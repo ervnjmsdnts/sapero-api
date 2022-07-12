@@ -6,4 +6,4 @@ router.post("/", (req, res) => {
   res.json({ message: "Hi User" });
 });
 
-module.exports.handler = router;
+module.exports = router;

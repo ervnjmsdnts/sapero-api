@@ -11,4 +11,4 @@ const router = Router();
 router.post("/login", validate(loginSchema), loginController);
 router.post("/register", validate(registerSchema), registerController);
 
-module.exports.handler = router;
+module.exports = router;

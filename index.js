@@ -20,11 +20,11 @@ const authRoutes = require("./src/routes/auth/handler");
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  await mongoose.connect("mongodb://localhost:27017/sapero");
-  console.log("MongoDB Connected");
+  // await mongoose.connect("mongodb://localhost:27017/sapero");
+  // console.log("MongoDB Connected");
 
-  app.use("/api/users", userRoutes.handler);
-  app.use("/api/auth", authRoutes.handler);
+  app.use("/api/users", userRoutes);
+  app.use("/api/auth", authRoutes);
 
   const PORT = process.env.PORT || 8080;
 
