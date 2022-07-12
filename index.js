@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-const userRoutes = require("./routes/users");
-const authRoutes = require("./routes/auth/handler");
+const userRoutes = require("./src/routes/users");
+const authRoutes = require("./src/routes/auth/handler");
 
 (async () => {
   const app = express();
