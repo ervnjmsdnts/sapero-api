@@ -20,8 +20,8 @@ const authRoutes = require("./src/routes/auth/handler");
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  // await mongoose.connect("mongodb://localhost:27017/sapero");
-  // console.log("MongoDB Connected");
+  await mongoose.connect("mongodb+srv://oduum:Kq4KhKKrnlK1uz6H@sapero.ayykp.mongodb.net/?retryWrites=true&w=majority");
+  console.log("MongoDB Connected");
 
   app.use("/api/users", userRoutes);
   app.use("/api/auth", authRoutes);
