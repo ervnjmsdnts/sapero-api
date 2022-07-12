@@ -12,7 +12,7 @@ module.exports.loginController = async (req, res) => {
   const isPasswordValid = await verify.hash(password, user.password);
 
   if (!isPasswordValid)
-    return res.status(400).send({ error: "Password is wrong" });
+    return res.status(400).send({ error: "Credentials are wrong" });
 
   const token = generate.jwt({ id: user._id });
 
