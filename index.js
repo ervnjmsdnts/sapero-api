@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-const userRoutes = require("./src/routes/users");
+const userRoutes = require("./src/routes/users/handler");
 const authRoutes = require("./src/routes/auth/handler");
 
 (async () => {
@@ -20,7 +20,9 @@ const authRoutes = require("./src/routes/auth/handler");
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  await mongoose.connect("mongodb+srv://oduum:Kq4KhKKrnlK1uz6H@sapero.ayykp.mongodb.net/?retryWrites=true&w=majority");
+  await mongoose.connect(
+    "mongodb+srv://oduum:Kq4KhKKrnlK1uz6H@sapero.ayykp.mongodb.net/?retryWrites=true&w=majority"
+  );
   console.log("MongoDB Connected");
 
   app.use("/api/users", userRoutes);
@@ -31,4 +33,4 @@ const authRoutes = require("./src/routes/auth/handler");
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
-})()
+})();
