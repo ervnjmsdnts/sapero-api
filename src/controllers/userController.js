@@ -6,6 +6,6 @@ module.exports.getAllUsers = async (req, res) => {
 };
 
 module.exports.getCurrentUser = async (req, res) => {
-  const user = await User.findById({ _id: req.user.id });
+  const user = await User.findById({ _id: req.userId });
   return res.json(user);
 };

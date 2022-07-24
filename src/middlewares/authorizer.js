@@ -1,15 +1,23 @@
 const verify = require("../helpers/verify");
 
 module.exports.authorizer = async (req, res, next) => {
-  const token = req.headers.authorization;
+  const bearerToken = req.headers["authorization"];
 
-  if (!token) return res.status(401).send({ error: "Token not found" });
+  if (!bearerToken) return res.status(401).send({ error: "Unauthorized" });
 
-  const decoded = await verify.jwt(token);
+  const token = bearerToken.split(" ")[1];
 
-  if (!decoded) return res.status(401).send({ error: "Token is invalid" });
+  console.log("Authorizer", token);
 
-  req.user = decoded;
+  if (!token) return res.status(401).send({ error: "Unauthorized" });
+
+  const isTokenValid = await verify.jwt(token);
+
+  if (!isTokenValid) return res.status(401).send({ error: "Unauthorized" });
+
+  req.userId = isTokenValid.id;
+
+  req.userRole = isTokenValid.role;
 
   next();
 };

@@ -6,6 +6,8 @@ module.exports.loginSchema = object({
 });
 
 module.exports.registerSchema = object({
+  firstName: string().required(),
+  lastName: string().required(),
   email: string().email("Enter a valid email").required(),
   password: string().required(),
   confirmPassword: string()
