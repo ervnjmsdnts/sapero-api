@@ -7,8 +7,6 @@ module.exports.authorizer = async (req, res, next) => {
 
   const token = bearerToken.split(" ")[1];
 
-  console.log("Authorizer", token);
-
   if (!token) return res.status(401).send({ error: "Unauthorized" });
 
   const isTokenValid = await verify.jwt(token);

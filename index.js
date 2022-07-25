@@ -1,9 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const cloudinary = require("cloudinary").v2;
 
 const userRoutes = require("./src/routes/users/handler");
 const authRoutes = require("./src/routes/auth/handler");
+const carRoutes = require("./src/routes/cars/handler");
 
 (async () => {
   const app = express();
@@ -12,13 +14,13 @@ const authRoutes = require("./src/routes/auth/handler");
   app.use(
     cors({
       origin: "*",
-      methods: ["GET", "POST", "PUT", "DELETE"],
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true,
     })
   );
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json({ limit: "50mb" }));
+  app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
   await mongoose.connect(
     "mongodb+srv://oduum:Kq4KhKKrnlK1uz6H@sapero.ayykp.mongodb.net/?retryWrites=true&w=majority"
@@ -27,6 +29,7 @@ const authRoutes = require("./src/routes/auth/handler");
 
   app.use("/api/users", userRoutes);
   app.use("/api/auth", authRoutes);
+  app.use("/api/cars", carRoutes);
 
   const PORT = process.env.PORT || 8080;
 

@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+const { model, Schema } = require("mongoose");
 
 const carSchema = new Schema(
   {
@@ -6,9 +6,9 @@ const carSchema = new Schema(
       type: String,
       required: true,
     },
-    specification: {
-      type: Array,
-      default: [],
+    description: {
+      type: String,
+      default: "",
     },
     type: {
       type: String,

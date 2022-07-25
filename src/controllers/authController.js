@@ -74,7 +74,7 @@ module.exports.loginController = async (req, res) => {
 };
 
 module.exports.registerController = async (req, res) => {
-  let { email, password, firstName, lastName } = req.body;
+  let { email, password, firstName, lastName, role } = req.body;
   const isEmailExist = await User.findOne({ email });
 
   if (isEmailExist)
@@ -87,6 +87,7 @@ module.exports.registerController = async (req, res) => {
     lastName,
     email,
     password,
+    ...(role && { role }),
   });
 
   await user.save();
