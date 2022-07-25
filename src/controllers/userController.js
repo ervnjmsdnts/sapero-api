@@ -36,3 +36,17 @@ module.exports.updateUserRole = async (req, res) => {
 
   return res.status(200).send({ message: "User updated" });
 };
+
+module.exports.addBalance = async (req, res) => {
+  const user = await User.findByIdAndUpdate(req.userId, {
+    balance: req.body.balance,
+  });
+
+  if (!user) {
+    return res.status(404).send({ error: "User not found" });
+  }
+
+  await user.save();
+
+  return res.status(200).send({ message: "User updated" });
+};

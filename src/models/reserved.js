@@ -16,9 +16,13 @@ const reservedSchema = new Schema(
       type: Date,
       required: true,
     },
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
     status: {
       type: String,
-      enum: ["on-going, finished"],
+      enum: ["on-going", "finished"],
       default: "on-going",
     },
   },

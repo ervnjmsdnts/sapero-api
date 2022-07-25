@@ -19,6 +19,10 @@ const userSchema = new Schema(
     googleId: {
       type: String,
     },
+    balance: {
+      type: Number,
+      default: 0,
+    },
     role: {
       type: String,
       enum: ["admin", "user"],

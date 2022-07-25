@@ -12,7 +12,7 @@ const rentedSchema = new Schema(
       ref: "Car",
       required: true,
     },
-    startDate: {
+    pickUpDate: {
       type: Date,
       required: true,
     },
@@ -20,9 +20,13 @@ const rentedSchema = new Schema(
       type: Date,
       required: true,
     },
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
     status: {
       type: String,
-      enum: ["on-going, finished"],
+      enum: ["on-going", "finished"],
       default: "on-going",
     },
   },
